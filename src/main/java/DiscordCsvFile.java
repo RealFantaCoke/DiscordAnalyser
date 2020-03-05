@@ -10,6 +10,7 @@ import java.nio.file.Files;
 
 public class DiscordCsvFile{
     public static int i;
+    public static int e;
 
 
 }

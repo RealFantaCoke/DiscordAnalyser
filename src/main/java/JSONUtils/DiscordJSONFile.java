@@ -1,6 +1,7 @@
 package JSONUtils;
 
-import jdk.nashorn.internal.runtime.JSONFunctions;
+import DiscordGuilds.DiscordGuild;
+import DiscordGuilds.DiscordGuildManager;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -15,7 +16,7 @@ public class DiscordJSONFile {
     public DiscordJSONFile(File fileIn) throws IOException {
         fileContents = readFileAsString(fileIn);
         DiscordJSONFileManager.addFile(this);
-        scanJSONforCSVFILE();
+        scanFile();
     }
 
     public static String readFileAsString(File f) {
@@ -29,15 +30,26 @@ public class DiscordJSONFile {
         return text;
     }
 
-    public String scanJSONforCSVFILE() {
+    public void scanFile() {
         JSONObject obj = new JSONObject(fileContents);
-        for(String j : obj.keySet()){
-            if(j.contains("csv")){
-                System.out.println("Yeet");
-            }
+        int type = obj.getInt("type");
+        switch (type) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                DiscordGuild g = new DiscordGuild(obj.getString("id"),obj.getString("name"));
+                if(g.guildId != null && g.guildName != null){
+                    DiscordGuildManager.addGuild(g);
+                    System.out.println("Added Guild '" + g.guildName + "' to the GuildList");
+                }
+                break;
         }
-        System.out.println(obj.get("id"));
-        return "";
     }
 
     public String getFileName() {

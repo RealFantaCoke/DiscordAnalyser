@@ -1,5 +1,6 @@
 package JSONUtils;
 
+import jdk.nashorn.internal.runtime.JSONFunctions;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -30,6 +31,11 @@ public class DiscordJSONFile {
 
     public String scanJSONforCSVFILE() {
         JSONObject obj = new JSONObject(fileContents);
+        for(String j : obj.keySet()){
+            if(j.contains("csv")){
+                System.out.println("Yeet");
+            }
+        }
         System.out.println(obj.get("id"));
         return "";
     }

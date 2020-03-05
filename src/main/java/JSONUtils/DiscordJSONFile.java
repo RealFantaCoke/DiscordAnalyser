@@ -1,6 +1,10 @@
 package JSONUtils;
 
-import jdk.nashorn.internal.runtime.JSONFunctions;
+import DiscordGuilds.Channels.DiscordGuildChannel;
+import DiscordGuilds.DiscordGuild;
+import DiscordGuilds.DiscordGuildManager;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -15,7 +19,7 @@ public class DiscordJSONFile {
     public DiscordJSONFile(File fileIn) throws IOException {
         fileContents = readFileAsString(fileIn);
         DiscordJSONFileManager.addFile(this);
-        scanJSONforCSVFILE();
+        scanFile();
     }
 
     public static String readFileAsString(File f) {
@@ -29,15 +33,37 @@ public class DiscordJSONFile {
         return text;
     }
 
-    public String scanJSONforCSVFILE() {
+    public void scanFile() {
         JSONObject obj = new JSONObject(fileContents);
-        for(String j : obj.keySet()){
-            if(j.contains("csv")){
-                System.out.println("Yeet");
-            }
+        int type = 5;
+        try {
+            type = obj.getInt("type");
+        } catch (JSONException e) {
         }
-        System.out.println(obj.get("id"));
-        return "";
+        switch (type) {
+            case 0:
+                //channel
+                String id = obj.getString("id");
+                String channelName = obj.getString("name");
+
+                JSONObject guildId1 = obj.getJSONObject("guild");
+                String guildId = guildId1.getString("id");
+                DiscordGuild curGuild = DiscordGuildManager.getGuildById(guildId);
+
+                DiscordGuildChannel channel = new DiscordGuildChannel(id, channelName, curGuild);
+                //curGuild.addChannel(channel);
+                System.out.println("Added channel '" + channelName + "' to the Guild '" + guildId +  "' ");
+                break;
+            case 1:
+                //gruppen
+                String id1 = obj.getString("id");
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+
+        }
     }
 
     public String getFileName() {

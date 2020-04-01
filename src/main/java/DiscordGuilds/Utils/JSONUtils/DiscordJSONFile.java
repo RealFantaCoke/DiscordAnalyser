@@ -82,8 +82,7 @@ public class DiscordJSONFile {
                 id = obj.getString("id");
                 channelName = obj.getString("name");
             }catch(JSONException e){
-                if(id == null)
-                    return false;
+
                 DiscordDirectConversation directConv = new DiscordDirectConversation(id);
                 File csv = new File(currFile.getParent() + "/messages.csv");
                 DiscordCsvFile csvFile = new DiscordCsvFile(csv);

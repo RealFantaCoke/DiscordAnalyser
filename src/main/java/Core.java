@@ -30,7 +30,7 @@ public class Core {
         } else {
             System.out.println("[ERROR] You seeem to have set the wrong path for your data-package");
         }
-        for(DiscordMessage msg : DiscordUtil.searchDiscordForMessage("Sardism")){
+        for(DiscordMessage msg : DiscordUtil.searchDiscordForMessage("ok")){
             System.out.println("Search Results: " + msg.messageContent);
         }
 

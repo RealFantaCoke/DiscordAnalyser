@@ -38,4 +38,11 @@ public class DiscordUtil {
         }
         return searchResults;
     }
+    public static String printOutSearchResults(String search){
+        StringBuilder sb = new StringBuilder();
+        for(DiscordMessage msg : DiscordUtil.searchDiscordForMessage(search)){
+            sb.append(msg.messageContent + "\n");
+        }
+        return sb.toString();
+    }
 }

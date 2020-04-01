@@ -106,6 +106,9 @@ public class DiscordJSONFile {
             DiscordGuildChannel channel = new DiscordGuildChannel(id, channelName, curGuild);
             File csv = new File(currFile.getParent() + "/messages.csv");
             DiscordCsvFile csvFile = new DiscordCsvFile(csv);
+            if(curGuild ==null)
+                return false;
+
             if (csvFile.read()) {
                 List<DiscordMessage> messages = new ArrayList<>();
                 for (String[] currLine : csvFile.content) {

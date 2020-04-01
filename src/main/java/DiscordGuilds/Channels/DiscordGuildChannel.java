@@ -1,6 +1,6 @@
 package DiscordGuilds.Channels;
 
-import DiscordGuilds.DiscordGuild;
+import DiscordGuilds.Guilds.DiscordGuild;
 
 import java.util.HashMap;
 

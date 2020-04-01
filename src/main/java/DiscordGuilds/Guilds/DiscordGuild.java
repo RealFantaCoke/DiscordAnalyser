@@ -1,4 +1,4 @@
-package DiscordGuilds;
+package DiscordGuilds.Guilds;
 
 import DiscordGuilds.Channels.DiscordGuildChannel;
 

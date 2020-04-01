@@ -1,4 +1,6 @@
-package DiscordGuilds;
+package DiscordGuilds.Guilds;
+
+import DiscordGuilds.Guilds.DiscordGuild;
 
 import java.util.ArrayList;
 import java.util.List;

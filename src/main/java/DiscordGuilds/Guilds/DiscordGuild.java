@@ -1,8 +1,10 @@
 package DiscordGuilds.Guilds;
 
 import DiscordGuilds.Channels.DiscordGuildChannel;
+import DiscordGuilds.Utils.DiscordUtils.DiscordMessage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DiscordGuild {
     public String guildId;
@@ -12,7 +14,26 @@ public class DiscordGuild {
     public DiscordGuild(String guildId, String guildName) {
         this.guildId = guildId;
         this.guildName = guildName;
+    }
 
+    public DiscordGuildChannel getChannelByName(String name){
+        for(DiscordGuildChannel channel: channels){
+            if(channel.channelName == name)
+                return channel;
+        }
+        return null;
+    }
+
+    public List<DiscordMessage> searchGuildForMessage(String message){
+        List<DiscordMessage> searchResult = new ArrayList<>();
+        for(DiscordGuildChannel chan : channels){
+            for(DiscordMessage msg : chan.messages){
+                if(msg.messageContent.contains(message)){
+                    searchResult.add(msg);
+                }
+            }
+        }
+        return searchResult;
     }
 
     public void addChannel(DiscordGuildChannel channel){

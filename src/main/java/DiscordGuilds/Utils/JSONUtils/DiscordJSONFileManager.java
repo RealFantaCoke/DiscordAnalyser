@@ -1,4 +1,4 @@
-package DiscordGuilds.JSONUtils;
+package DiscordGuilds.Utils.JSONUtils;
 
 import java.util.ArrayList;
 import java.util.List;

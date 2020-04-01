@@ -1,6 +1,8 @@
 package DiscordGuilds.Guilds;
 
+import DiscordGuilds.Channels.DiscordGuildChannel;
 import DiscordGuilds.Guilds.DiscordGuild;
+import DiscordGuilds.Utils.DiscordUtils.DiscordMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,5 +29,19 @@ public class DiscordGuildManager {
                 return g;
         }
         return null;
+    }
+
+    public static List<DiscordMessage> searchInGuildsForMessage(String message){
+        List<DiscordMessage> searchResulst = new ArrayList<>();
+        for(DiscordGuild g : guilds){
+            for(DiscordGuildChannel c : g.channels){
+                for(DiscordMessage msg : c.messages){
+                    if(msg.messageContent.contains(message)){
+                        searchResulst.add(msg);
+                    }
+                }
+            }
+        }
+        return searchResulst;
     }
 }

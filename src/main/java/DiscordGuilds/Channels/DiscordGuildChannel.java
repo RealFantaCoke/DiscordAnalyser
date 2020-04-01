@@ -1,14 +1,16 @@
 package DiscordGuilds.Channels;
 
 import DiscordGuilds.Guilds.DiscordGuild;
+import DiscordGuilds.Utils.DiscordUtils.DiscordMessage;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DiscordGuildChannel {
     public String channelId;
     public String channelName;
     public DiscordGuild Guild;
-    public HashMap<String, String> messages = new HashMap<>();
+    public List<DiscordMessage> messages = new ArrayList<>();
 
     public DiscordGuildChannel(String channelId, String channelName, DiscordGuild guild) {
         this.channelId = channelId;
@@ -16,8 +18,8 @@ public class DiscordGuildChannel {
         Guild = guild;
     }
 
-    public void addMessage(String messageId,String messageContent) {
-        this.messages.put(messageId,messageContent);
+    public void addMessage(String messageId, String timeStamp, String messageContent) {
+        this.messages.add(new DiscordMessage(messageId, timeStamp, messageContent));
     }
 
     public String getChannelId() {
@@ -44,11 +46,11 @@ public class DiscordGuildChannel {
         Guild = guild;
     }
 
-    public HashMap<String, String> getMessages() {
+    public List<DiscordMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(HashMap<String, String> messages) {
+    public void setMessages(List<DiscordMessage> messages) {
         this.messages = messages;
     }
 }

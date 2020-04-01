@@ -1,5 +1,8 @@
 import DiscordGuilds.FileType;
-import DiscordGuilds.JSONUtils.DiscordJSONFile;
+import DiscordGuilds.Guilds.DiscordGuildManager;
+import DiscordGuilds.Utils.DiscordUtils.DiscordMessage;
+import DiscordGuilds.Utils.DiscordUtils.DiscordUtil;
+import DiscordGuilds.Utils.JSONUtils.DiscordJSONFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,14 +17,23 @@ public class Core {
         if (directoryListing != null) {
             for (File folder : directoryListing) {
                 File[] subFiles = folder.listFiles();
-                if(folder.getName().equals("messages"))
-                    checkForMessages(folder);
-                else if(folder.getName().equals("servers"))
+                if(folder.getName().equals("servers"))
                     checkForGuilds(folder);
             }
-        } else {
+            for (File folder : directoryListing) {
+                File[] subFiles = folder.listFiles();
 
+                if(folder.getName().equals("messages"))
+                    checkForMessages(folder);
+            }
+
+        } else {
+            System.out.println("[ERROR] You seeem to have set the wrong path for your data-package");
         }
+        for(DiscordMessage msg : DiscordUtil.searchDiscordForMessage("Sardism")){
+            System.out.println("Search Results: " + msg.messageContent);
+        }
+
     }
 
     private static void checkForGuilds(File folder) {

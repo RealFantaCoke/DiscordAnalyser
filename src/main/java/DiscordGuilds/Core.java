@@ -1,6 +1,9 @@
 package DiscordGuilds;
 
+import DiscordGuilds.DirectMessages.DiscordDirectConversationManager;
+import DiscordGuilds.Groups.DiscordGroupManager;
 import DiscordGuilds.Gui.GuiFileFrame;
+import DiscordGuilds.Guilds.DiscordGuildManager;
 import DiscordGuilds.Utils.JSONUtils.DiscordJSONFile;
 
 import java.io.File;
@@ -13,6 +16,12 @@ public class Core {
     public static void main(String[] args) {
         GuiFileFrame guiFileFrame = new GuiFileFrame();
         guiFileFrame.setVisible(true);
+    }
+
+    public static void unLoadCurrentPackage(){
+        DiscordGuildManager.guilds.clear();
+        DiscordGroupManager.groups.clear();
+        DiscordDirectConversationManager.directConversations.clear();
     }
 
     public static void loadPackage(File f){

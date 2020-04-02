@@ -13,36 +13,62 @@ import java.util.List;
 
 public class DiscordUtil {
 
-    public static List<DiscordMessage> searchDiscordForMessage(String message){
+    public static List<DiscordMessage> searchDiscordForMessage(String message) {
         List<DiscordMessage> searchResults = new ArrayList<>();
-        for(DiscordGuild g : DiscordGuildManager.guilds){
-            for(DiscordGuildChannel c : g.channels){
-                for(DiscordMessage msg : c.messages){
-                    if(msg.messageContent.contains(message))
+        for (DiscordGuild g : DiscordGuildManager.guilds) {
+            for (DiscordGuildChannel c : g.channels) {
+                for (DiscordMessage msg : c.messages) {
+                    if (msg.messageContent.contains(message))
                         searchResults.add(msg);
                 }
             }
         }
-        for(DiscordGroup group : DiscordGroupManager.groups){
-            for(DiscordMessage msg : group.messages){
-                if(msg.messageContent.contains(message))
+        for (DiscordGroup group : DiscordGroupManager.groups) {
+            for (DiscordMessage msg : group.messages) {
+                if (msg.messageContent.contains(message))
                     searchResults.add(msg);
             }
         }
-        for(DiscordDirectConversation directConversation : DiscordDirectConversationManager.directConversations){
-            for(DiscordMessage msg : directConversation.messages){
-                if(msg.messageContent.contains(message)){
+        for (DiscordDirectConversation directConversation : DiscordDirectConversationManager.directConversations) {
+            for (DiscordMessage msg : directConversation.messages) {
+                if (msg.messageContent.contains(message)) {
                     searchResults.add(msg);
                 }
             }
         }
         return searchResults;
     }
-    public static String printOutSearchResults(String search){
+
+    public static String printOutSearchResults(String search) {
         StringBuilder sb = new StringBuilder();
-        for(DiscordMessage msg : DiscordUtil.searchDiscordForMessage(search)){
+        for (DiscordMessage msg : DiscordUtil.searchDiscordForMessage(search)) {
             sb.append(msg.messageId + ": " + msg.messageContent + "\n");
         }
         return sb.toString();
     }
+
+    public static DiscordMessage getMessageById(String id) {
+        for (DiscordGuild g : DiscordGuildManager.guilds) {
+            for (DiscordGuildChannel c : g.channels) {
+                for (DiscordMessage msg : c.messages) {
+                    if (msg.messageId == id)
+                        return msg;
+                }
+            }
+        }
+        for (DiscordGroup group : DiscordGroupManager.groups) {
+            for (DiscordMessage msg : group.messages) {
+                if (msg.messageId == id)
+                    return msg;
+            }
+        }
+        for (DiscordDirectConversation directConversation : DiscordDirectConversationManager.directConversations) {
+            for (DiscordMessage msg : directConversation.messages) {
+                if (msg.messageId == id)
+                    return msg;
+            }
+        }
+        return null;
+    }
+
 }

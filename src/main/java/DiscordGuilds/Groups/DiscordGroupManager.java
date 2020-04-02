@@ -5,4 +5,6 @@ import java.util.List;
 
 public class DiscordGroupManager {
     public static List<DiscordGroup> groups = new ArrayList<>();
+
+
 }

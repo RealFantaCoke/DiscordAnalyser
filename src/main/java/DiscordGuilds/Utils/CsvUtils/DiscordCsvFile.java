@@ -31,7 +31,7 @@ public class DiscordCsvFile{
                 if(currLine == null)
                     continue;
                 String[] lineSplit = currLine.split(",");
-                if(lineSplit[0].equals("ID") && lineSplit[1].equals("Timestamp") && lineSplit[2].equals("Contents") && lineSplit[3].equals("Attachements")){
+                if(lineSplit[0].equals("ID") && lineSplit[1].equals("Timestamp") && lineSplit[2].equals("Contents") && lineSplit[3].equals("Attachements") || lineSplit[0].equals("ID") && lineSplit[1].equals("Timestamp") && lineSplit[2].equals("Contents")){
                     headers = lineSplit;
                 }else {
                     content[i] = lineSplit;

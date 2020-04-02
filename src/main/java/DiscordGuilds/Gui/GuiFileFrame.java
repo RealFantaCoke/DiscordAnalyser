@@ -27,27 +27,25 @@ public class GuiFileFrame extends JFrame {
         }else{
             label.setText("Open command canceled");
         }
-        knopf.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+
+        knopf.addActionListener(e -> {
             frame.setVisible(false);
             Core.loadPackage(fileChooser.getSelectedFile());
             FensterJFrame fenster = new FensterJFrame();
-            fenster.initWindow();
             fenster.setVisible(true);
-            }
         });
+
         fileChooser.setBounds(10,100,170,20);
         fileChooser.setVisible(false);
         frame.setVisible(true);
         label.show();
-        frame.setBounds(600,600,600,600);
-        knopf.setBounds(100,300,100,100);
+        label.setBounds(10,25,100,20);
+        frame.setBounds(600,600,210,170);
+        knopf.setBounds(10,45,100,20);
         knopf.setVisible(true);
         frame.add(knopf);
         frame.add(label);
-        frame.add(fileChooser);
-
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     }
 }

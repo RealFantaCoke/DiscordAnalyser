@@ -1,11 +1,8 @@
 package DiscordGuilds;
 
-import DiscordGuilds.FileType;
-import DiscordGuilds.Gui.FensterJFrame;
 import DiscordGuilds.Gui.GuiFileFrame;
 import DiscordGuilds.Utils.JSONUtils.DiscordJSONFile;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,11 +11,8 @@ public class Core {
     public String version = "v1.0 alpha";
 
     public static void main(String[] args) {
-
-    GuiFileFrame fileFrame = new GuiFileFrame();
-    fileFrame.show();
-    fileFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        GuiFileFrame guiFileFrame = new GuiFileFrame();
+        guiFileFrame.setVisible(true);
     }
 
     public static void loadPackage(File f){

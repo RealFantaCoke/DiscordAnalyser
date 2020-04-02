@@ -41,7 +41,7 @@ public class DiscordUtil {
     public static String printOutSearchResults(String search){
         StringBuilder sb = new StringBuilder();
         for(DiscordMessage msg : DiscordUtil.searchDiscordForMessage(search)){
-            sb.append(msg.messageContent + "\n");
+            sb.append(msg.messageId + ": " + msg.messageContent + "\n");
         }
         return sb.toString();
     }

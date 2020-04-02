@@ -2,6 +2,7 @@ package DiscordGuilds;
 
 import DiscordGuilds.DirectMessages.DiscordDirectConversationManager;
 import DiscordGuilds.Groups.DiscordGroupManager;
+import DiscordGuilds.Gui.FensterJFrame;
 import DiscordGuilds.Gui.GuiFileFrame;
 import DiscordGuilds.Guilds.DiscordGuildManager;
 import DiscordGuilds.Utils.JSONUtils.DiscordJSONFile;
@@ -12,16 +13,17 @@ import java.io.IOException;
 public class Core {
     public String name = "DiscordAnalyser";
     public String version = "v1.0 alpha";
-
+    public static FensterJFrame gui;
     public static void main(String[] args) {
-        GuiFileFrame guiFileFrame = new GuiFileFrame();
-        guiFileFrame.setVisible(true);
+        gui = new FensterJFrame();
+        gui.setVisible(true);
     }
 
     public static void unLoadCurrentPackage(){
         DiscordGuildManager.guilds.clear();
         DiscordGroupManager.groups.clear();
         DiscordDirectConversationManager.directConversations.clear();
+        gui.model.reload();
     }
 
     public static void loadPackage(File f){
@@ -46,7 +48,7 @@ public class Core {
             System.out.println("[ERROR] You seeem to have set the wrong path for your data-package");
         }
 
-
+        gui.model.reload();
     }
 
     private static void checkForGuilds(File folder) {

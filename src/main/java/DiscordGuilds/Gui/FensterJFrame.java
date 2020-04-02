@@ -12,6 +12,8 @@ import DiscordGuilds.Utils.DiscordUtils.DiscordUtil;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,7 +29,10 @@ public class FensterJFrame extends JFrame {
     JButton buttonClear;
     String containsmsg;
     JTextField searchinput;
+    public DefaultTreeModel model ;
     JTree dataTree;
+    JPanel panelLeft;
+    JPanel panelRight;
     MyMenuBar toolbar;
     JFileChooser fileChooser = new JFileChooser();
     BorderLayout layout;
@@ -93,8 +98,8 @@ public class FensterJFrame extends JFrame {
          */
         addTree();
 
-        JPanel panelLeft = new JPanel(new BorderLayout(0,0));
-        JPanel panelRight = new JPanel(new BorderLayout(5,5));
+        panelLeft = new JPanel(new BorderLayout(0,0));
+        panelRight = new JPanel(new BorderLayout(5,5));
         panelLeft.add(new JLabel("File Tree", SwingConstants.CENTER), BorderLayout.NORTH);
         panelLeft.setBackground(new Color(44, 44, 44, 246));
         panelLeft.setForeground(Color.WHITE);
@@ -112,7 +117,9 @@ public class FensterJFrame extends JFrame {
 
     public void addTree(){
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Package");
-
+        if(DiscordGuildManager.guilds.isEmpty()){
+            Discord_Guilds.setText("Waiting for package loading!");
+        }
         DefaultMutableTreeNode guilds = new DefaultMutableTreeNode("Guilds");
         for(DiscordGuild g : DiscordGuildManager.guilds){
             DefaultMutableTreeNode node = new DefaultMutableTreeNode(g.guildName);
@@ -155,6 +162,8 @@ public class FensterJFrame extends JFrame {
         dataTree.setBackground(new Color(44, 44, 44, 246));
         dataTree.setFont(new Font("Verdana",Font.PLAIN,12));
         dataTree.setForeground(new Color(44, 44, 44, 246));
+        dataTree.setRootVisible(false);
+        model = (DefaultTreeModel)dataTree.getModel();
         dataTree.addTreeSelectionListener(e ->{
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)e.getPath().getLastPathComponent();
             DiscordMessage msg = DiscordUtil.getMessageById((String)selectedNode.getUserObject());

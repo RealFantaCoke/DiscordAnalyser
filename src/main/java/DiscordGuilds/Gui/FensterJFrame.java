@@ -99,7 +99,7 @@ public class FensterJFrame extends JFrame {
         panelLeft.setBackground(new Color(44, 44, 44, 246));
         panelLeft.setForeground(Color.WHITE);
         panelLeft.add(dataTree,BorderLayout.CENTER);
-        
+
         panelRight.add(Discord_Guilds,BorderLayout.CENTER);
         panelRight.setForeground(Color.WHITE);
         panelRight.setBackground(new Color(44, 44, 44, 246));

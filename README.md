@@ -9,5 +9,5 @@ In future updates we will clean up the JFrame windows and drascticly improve the
 Furthermore we will add more functions to process your package,
 such as adding a saving ability to save your current selected Messages etc.
 
-#Suggestions
-Please throw in suggestion to (Discord)Wazed:0911 or (Discord)yugimuo:6710
+# Suggestions
+Please throw in suggestion to (Discord)Wazed#0911 or (Discord)yugimuo#6710
